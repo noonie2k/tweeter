@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tweeter</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div id="user">
+        <%= link_to_if not(session[:user_id]), 'Login', login_path %>
+        <%= link_to_if session[:user_id], 'Logout', logout_path %>
+    </div>
+
+<%= yield %>
+
+</body>
+</html>

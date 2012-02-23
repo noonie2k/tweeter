@@ -1,0 +1,14 @@
+#notice= notice
+#alert= alert
+= form_tag do
+  %fieldset
+    %legend Please log in
+    #email
+      = label_tag :email
+      = text_field_tag :email, params[:email]
+    #password
+      = label_tag :password
+      = password_field_tag :password, params[:password]
+    #submit
+      = submit_tag 'Log in'
+      = link_to 'Register', new_user_path, :id => 'register'

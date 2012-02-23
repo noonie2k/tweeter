@@ -1,0 +1,5 @@
+author:
+  id: 1
+  email: author@tweeter.com
+  display_name: Test Author
+  password_digest: <%= BCrypt::Password.create('secret') %>
