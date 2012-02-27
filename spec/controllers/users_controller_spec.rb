@@ -28,6 +28,7 @@ describe UsersController do
     {
       :email                 => 'e@mail.com',
       :display_name          => 'Test User',
+      :handle                => 'handle',
       :password              => 'secret',
       :password_confirmation => 'secret'
     }
@@ -88,9 +89,9 @@ describe UsersController do
         assigns(:user).should be_persisted
       end
 
-      it "redirects to the created user" do
+      it "redirects to the tweets list" do
         post :create, {:user => valid_attributes}, valid_session
-        response.should redirect_to(User.last)
+        response.should redirect_to(root_path)
       end
     end
 
@@ -170,4 +171,33 @@ describe UsersController do
     end
   end
 
+  describe "POST follow" do
+    describe "with valid params" do
+      it "creates a new Follow" do
+        followed_user = users(:followed_user)
+
+        expect {
+          post :follow, {:id => followed_user}, valid_session
+        }.to change(Following, :count).by(1)
+      end
+
+      it "redirects to the followed user" do
+        followed_user = users(:followed_user)
+
+        post :follow, {:id => followed_user}, valid_session
+        response.should redirect_to(followed_user)
+      end
+    end
+
+    describe "with invalid params" do
+      it "returns to the followed user" do
+        followed_user = users(:followed_user)
+
+        Following.any_instance.stub(:save).and_return(false)
+        post :follow, {:id => followed_user}, valid_session
+        
+        response.should redirect_to(followed_user)
+      end
+    end
+  end
 end

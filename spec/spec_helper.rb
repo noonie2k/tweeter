@@ -10,23 +10,32 @@ Spork.prefork do
   require File.expand_path('../../config/environment', __FILE__)
   require 'rspec/rails'
 
+  require 'simplecov'
+  SimpleCov.start 'rails'
+
   RSpec.configure do |config|
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.run_all_when_everything_filtered = true
     config.filter_run :focus
 
+    require 'database_cleaner'
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :transaction
+    end
+
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+
     config.after(:each) do
-      User.delete_all
-      Tweet.delete_all
+      DatabaseCleaner.clean
     end
   end
 end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-  require 'simplecov'
-  SimpleCov.start 'rails'
 end
 
 # --- Instructions ---

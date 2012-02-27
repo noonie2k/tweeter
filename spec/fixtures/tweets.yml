@@ -1,4 +1,9 @@
 one:
   id: 1
   author_id: 1
-  body: This is a tweet
+  body: This is tweet one
+
+two:
+  id: 2
+  author_id: 1
+  body: This is tweet two

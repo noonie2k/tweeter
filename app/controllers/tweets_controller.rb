@@ -5,6 +5,7 @@ class TweetsController < ApplicationController
   # GET /tweets.json
   def index
     @tweets = Tweet.all
+    @tweet = Tweet.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,14 +43,15 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
+    @tweets = Tweet.all
     @tweet = Tweet.new(params[:tweet])
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
-        format.json { render json: @tweet, status: :created, location: @tweet }
+        format.html { redirect_to tweets_path, notice: 'Tweet was successfully created.' }
+        format.json { render json: @tweet, status: :created, location: tweets_path }
       else
-        format.html { render action: "new" }
+        format.html { render action: "index" }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
     end

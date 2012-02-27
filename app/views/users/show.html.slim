@@ -1,0 +1,14 @@
+- if notice
+  p#notice= notice
+
+#user
+  .email= @user.email
+  .display_name= @user.display_name
+  .handle= @user.handle
+
+#follow
+  = button_to 'Follow', follow_path(:id => @user)
+
+#tweets
+  - @user.tweets.each do |tweet|
+    = render 'tweets/tweet', :tweet => tweet

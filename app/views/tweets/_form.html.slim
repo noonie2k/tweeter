@@ -1,0 +1,7 @@
+= form_for @tweet do |f|
+  = f.hidden_field :author_id, :value => session[:user_id]
+  .field
+    = f.text_area :body, :rows => 2, :cols => 30
+    .error= @tweet.errors[:body].first
+  .actions
+    = f.submit 'Post'

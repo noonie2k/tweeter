@@ -1,8 +1,8 @@
 - if notice
-  %p#notice= notice
+  p#notice= notice
 
-%p
-  %b= 'Body:'
+p
+  b= 'Body:'
   = @tweet.body
 
 = link_to 'Edit', edit_tweet_path(@tweet)

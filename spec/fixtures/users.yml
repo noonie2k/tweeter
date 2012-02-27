@@ -2,4 +2,11 @@ author:
   id: 1
   email: author@tweeter.com
   display_name: Test Author
+  handle: author
+  password_digest: <%= BCrypt::Password.create('secret') %>
+
+followed_user:
+  id: 2
+  email: follow_me@tweeter.com
+  handle: follow_me
   password_digest: <%= BCrypt::Password.create('secret') %>

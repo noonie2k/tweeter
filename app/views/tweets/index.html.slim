@@ -1,0 +1,10 @@
+.compose
+  - if session[:user_id] and User.find_by_id(session[:user_id])
+    == render 'form'
+  - else
+    = link_to 'Login to post tweets', login_path
+.tweets
+  h1= 'Tweets'
+  #latest_tweets
+    - Tweet.all.each do |tweet|
+      == render 'tweet', :tweet => tweet

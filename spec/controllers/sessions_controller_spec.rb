@@ -14,6 +14,7 @@ describe SessionsController do
       @user = User.create!(
         :email                 => 'e@mail.com',
         :display_name          => 'Test User',
+        :handle                => 'handle',
         :password              => 'secret',
         :password_confirmation => 'secret'
       )

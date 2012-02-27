@@ -89,9 +89,9 @@ describe TweetsController do
         assigns(:tweet).should be_persisted
       end
 
-      it "redirects to the created tweet" do
+      it "redirects to the tweets list" do
         post :create, {:tweet => valid_attributes}, valid_session
-        response.should redirect_to(Tweet.last)
+        response.should redirect_to(tweets_url)
       end
     end
 
@@ -107,7 +107,7 @@ describe TweetsController do
         # Trigger the behavior that occurs when invalid params are submitted
         Tweet.any_instance.stub(:save).and_return(false)
         post :create, {:tweet => {}}, valid_session
-        response.should render_template("new")
+        response.should render_template("index")
       end
     end
   end
