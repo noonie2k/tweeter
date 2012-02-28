@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+  include UsersHelper
+
   skip_before_filter :authorize, :only => [:new, :create]
+
   # GET /users
   # GET /users.json
   def index
@@ -15,6 +18,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @following = current_user.followed_users.find(@user) rescue nil
 
     respond_to do |format|
       format.html # show.html.erb
@@ -85,7 +89,7 @@ class UsersController < ApplicationController
   def follow
     followed_user = User.find(params[:id])
 
-    follow = Following.new(
+    follow = Follow.new(
       :user_id => session[:user_id],
       :followed_user => followed_user
     )

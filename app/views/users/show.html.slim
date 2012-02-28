@@ -1,4 +1,4 @@
-- if notice
+-if notice
   p#notice= notice
 
 #user
@@ -6,8 +6,12 @@
   .display_name= @user.display_name
   .handle= @user.handle
 
-#follow
-  = button_to 'Follow', follow_path(:id => @user)
+-if current_user != @user
+  #follow
+    -if @following
+      = button_to 'Unfollow', unfollow_path(:id => @user)
+    -else
+      = button_to 'Follow', follow_path(:id => @user)
 
 #tweets
   - @user.tweets.each do |tweet|

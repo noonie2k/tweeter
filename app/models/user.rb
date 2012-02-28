@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :tweets, :foreign_key => :author_id
-  has_many :followings
-  has_many :followed_users, :through => :followings
+  has_many :follows
+  has_many :followed_users, :through => :follows
 
   validates :email, :display_name, :handle, :password_confirmation,
     :presence => :true

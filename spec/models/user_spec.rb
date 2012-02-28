@@ -95,7 +95,7 @@ describe User do
   end
 
   describe "relationships" do
-    fixtures :users, :followings
+    fixtures :users, :follows
     
     it "should identify a followed user" do
       user = users(:author)

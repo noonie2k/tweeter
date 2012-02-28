@@ -1,5 +1,5 @@
 .tweet
   .author
-    span.display_name= tweet.author.display_name
-    span.handle= tweet.author.display_handle
+    span.display_name= link_to tweet.author.display_name, tweet.author
+    span.handle= link_to tweet.author.display_handle, tweet.author
   .body= tweet.body

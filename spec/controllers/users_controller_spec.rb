@@ -178,7 +178,7 @@ describe UsersController do
 
         expect {
           post :follow, {:id => followed_user}, valid_session
-        }.to change(Following, :count).by(1)
+        }.to change(Follow, :count).by(1)
       end
 
       it "redirects to the followed user" do
@@ -193,7 +193,7 @@ describe UsersController do
       it "returns to the followed user" do
         followed_user = users(:followed_user)
 
-        Following.any_instance.stub(:save).and_return(false)
+        Follow.any_instance.stub(:save).and_return(false)
         post :follow, {:id => followed_user}, valid_session
         
         response.should redirect_to(followed_user)

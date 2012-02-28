@@ -13,18 +13,11 @@
 
 ActiveRecord::Schema.define(:version => 20120227223215) do
 
-  create_table "followings", :force => true do |t|
+  create_table "follows", :force => true do |t|
     t.integer  "user_id"
     t.integer  "followed_user_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-  end
-
-  create_table "friendships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "tweets", :force => true do |t|

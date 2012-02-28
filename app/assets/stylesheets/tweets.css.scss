@@ -1,3 +1,29 @@
 // Place all the styles related to the tweets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#columns {
+  background-color: #ddf;
+  padding: 10px;
+
+  .cell {
+    background-color: #eee;
+    border: 1px solid #777;
+    border-radius: 0.5em;
+    margin: 5px;
+    padding: 10px;
+
+    h1 {
+      margin-top: 0;
+    }
+  }
+
+  #left {
+    float: left;
+    width: 300px;
+  }
+
+  #main {
+    float: right;
+    width: 600px;
+  }
+}
